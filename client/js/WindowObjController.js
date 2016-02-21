@@ -2,7 +2,6 @@
 var WindowObjController = function(scene) {
     
     var windows;
-    var scene;
     
     this.init = function(scene) {
         this.windows = [];
@@ -15,7 +14,7 @@ var WindowObjController = function(scene) {
     this.createWindow = function(srcUrl) {
         var wdo = new WindowObj();
         this.windows.push(wdo);             // Track window
-        // this.scene.add(wdo.obj);            // Add window to scene
+        // scene.add(wdo.obj);                 // Add window to scene
         return wdo;
     };
     
