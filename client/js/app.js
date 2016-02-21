@@ -4,7 +4,6 @@ var App = function() {
     var scene;
     var camera;
     var renderer;
-    var cube;
     
     this.init = function() {
         // Create scene
@@ -22,10 +21,11 @@ var App = function() {
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( rem );
         
+        // Initialize WindowObjController
+        this.windowObjController = new WindowObjController(this.scene);
+        this.windowObj = this.windowObjController.createWindow('');
         
-        // FIXME: use windowControllerObject
-        this.windowObj = new windowObject();
-        
+        // TODO: windowObjs should automatically be added to scene
         this.scene.add( this.windowObj.obj );
         
         // CONTROLS
