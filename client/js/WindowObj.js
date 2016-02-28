@@ -4,9 +4,10 @@ var WindowObj = function() {
     this.init = function() {
         this.id = '1';
         // TODO create all necessary objects
-        var geometry = new THREE.BoxGeometry( 1, 1, 0 );
+        var geometry = new THREE.BoxGeometry( 40, 40, .1 );
         var material = new THREE.MeshBasicMaterial( { color: "#3498db" } );
         this.obj = new THREE.Mesh( geometry, material );
+        this.obj.push(this.obj)
     };
     
     this.getId = function() {
