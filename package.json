@@ -9,6 +9,25 @@
   "author": "Group 13",
   "license": "MIT",
   "devDependencies": {
-    "bower": "^1.7.7"
-  }
+    "bower": "^1.7.7",
+    "http-server": "^0.9.0",
+    "mocha": "^2.4.5"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshpaulchan/expanse.git"
+  },
+  "keywords": [
+    "virtual-reality",
+    "virtual",
+    "VR",
+    "three.js"
+  ],
+  "bugs": {
+    "url": "https://github.com/joshpaulchan/expanse/issues"
+  },
+  "homepage": "https://github.com/joshpaulchan/expanse#readme"
 }
