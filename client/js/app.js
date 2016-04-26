@@ -28,10 +28,10 @@ var App = function() {
         
         // Initialize WindowObjController
         this.windowObjController = new WindowObjController(this.scene);
-        this.windowObj = this.windowObjController.createWindow('');
+        var windowObj = this.windowObjController.createWindow('');
         
         // TODO: windowObjs should automatically be added to scene
-        this.scene.add( this.windowObj.obj );
+        this.scene.add( windowObj.obj );
         
         // CONTROLS
         var controls = new THREE.OrbitControls(this.camera, rem);
@@ -69,12 +69,27 @@ var App = function() {
             }
         });
         
+        var that = this;
+        this.socket.on('window', function(winData) {
+            // Create image info
+            var img = new Image();
+            img.src = 'data:image/jpeg;base64,' + winData.buffer;
+            if (winData.id) {
+                // if window exists, get it and update it
+                var win = that.windowObjController.getWindowById(winData.id);
+                console.log(win);
+                win.update(img);
+            } else {
+                // create new window
+            }
+        });
+        
         this.render();
     };
     
     this.update = function() {
         // TODO: user windowControllerObject
-        this.windowObj.update();
+        Reticulum.update();
     };
     
     this.render = function() {
