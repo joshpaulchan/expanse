@@ -4,7 +4,8 @@
   "description": "A VR Window Manager",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Group 13",
   "license": "MIT",
@@ -29,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/joshpaulchan/expanse/issues"
   },
-  "homepage": "https://github.com/joshpaulchan/expanse#readme"
+  "homepage": "https://github.com/joshpaulchan/expanse#readme",
+  "directories": {
+    "test": "test"
+  }
 }
