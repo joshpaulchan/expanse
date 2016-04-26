@@ -5,7 +5,7 @@ var WindowObjController = function(scene) {
     var activeWindow = null;
     
     this.init = function(scene) {
-        this.windows = [];
+        this.windows = {};
     };
     
     this.createWindows = function(n, feeds) {
@@ -14,7 +14,7 @@ var WindowObjController = function(scene) {
     
     this.createWindow = function(srcUrl) {
         var wdo = new WindowObj();
-        this.windows.push(wdo);             // Track window
+        this.windows[wdo.getId] = wdo;             // Track window
         // scene.add(wdo.obj);                 // Add window to scene
         
         // TODO: register wdo with Reticulum
@@ -31,6 +31,10 @@ var WindowObjController = function(scene) {
             }
             return (wo.id != windowId);
         });
+    };
+    
+    this.getWindowById = function(id) {
+        return this.windows[id];
     };
     
     this.getActiveWindow = function() {
