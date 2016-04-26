@@ -28,10 +28,6 @@ var App = function() {
         
         // Initialize WindowObjController
         this.windowObjController = new WindowObjController(this.scene);
-        var windowObj = this.windowObjController.createWindow('');
-        
-        // TODO: windowObjs should automatically be added to scene
-        this.scene.add( windowObj.obj );
         
         // CONTROLS
         var controls = new THREE.OrbitControls(this.camera, rem);
@@ -47,25 +43,13 @@ var App = function() {
         // window.addEventListener('deviceorientation', setOrientationControls, true);
         // rem.addEventListener('click', this.fullscreen, false);
         
-        var gestures = {
-            0: function(wo) {
-                console.log("gesture 0");
-            },
-            1: function(wo) {
-                console.log("gesture 1");
-            },
-            2: function(wo) {
-                console.log("gesture 2");
-            }
-        };
-        
         this.socket = io();
         this.socket.on('gesture', function(gestureNum){
             // Apply gesture to active window
             var aw = this.windowObjController.getActiveWindow();
             
             if (aw !== null) {
-                gestures[parseInt(gestureNum)](aw);
+                gestures[parseInt(gestureNum)](aw.obj);
             }
         });
         
@@ -74,14 +58,26 @@ var App = function() {
             // Create image info
             var img = new Image();
             img.src = 'data:image/jpeg;base64,' + winData.buffer;
-            if (winData.id) {
-                // if window exists, get it and update it
-                var win = that.windowObjController.getWindowById(winData.id);
-                console.log(win);
+            
+            // if window exists, get it and update it
+            var win = that.windowObjController.getWindowById(winData.id);
+            if (win !== null) {
                 win.update(img);
-            } else {
-                // create new window
             }
+        });
+        
+        this.socket.on('windowCreate', function(winData) {
+            // Create new window
+            var win = that.windowObjController.createWindow(winData.id);
+            that.scene.add( win.obj );
+            console.log("Window " + winData.id + " created");
+        });
+        
+        this.socket.on('windowDestroy', function(winData) {
+            // Create new window
+            var win = that.windowObjController.destroyWindow(winData.id);
+            that.scene.remove( win.obj );
+            console.log("Window " + winData.id + " destroyed");
         });
         
         this.render();
@@ -89,7 +85,7 @@ var App = function() {
     
     this.update = function() {
         // TODO: user windowControllerObject
-        Reticulum.update();
+        // Reticulum.update();
     };
     
     this.render = function() {
