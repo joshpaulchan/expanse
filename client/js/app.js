@@ -12,20 +12,6 @@ var App = function() {
         // Initialize camera
         this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 700 );
         this.camera.position.set(0, 0, 5);
-        this.scene.add(this.camera);
-        
-        // Initialize lighting
-        this.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-        this.scene.add( this.light );
-        
-        // Initialize renderer
-        this.renderer = new THREE.WebGLRenderer();
-        this.stereoRenderer = new THREE.StereoEffect(this.renderer);
-        rem = this.renderer.domElement;
-        
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
-        document.body.appendChild( rem );
-        
         
         Reticulum.init(this.camera, {
 			proximity: false,
@@ -54,8 +40,21 @@ var App = function() {
 				clickCancelFuse: false //If users clicks on targeted object fuse is canceled
 			}
 		});
-
         
+        this.scene.add(this.camera);
+        
+        // Initialize lighting
+        this.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+        this.scene.add( this.light );
+        
+        // Initialize renderer
+        this.renderer = new THREE.WebGLRenderer();
+        this.stereoRenderer = new THREE.StereoEffect(this.renderer);
+        rem = this.renderer.domElement;
+        
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        document.body.appendChild( rem );
+
         // Initialize WindowObjController
         this.windowObjController = new WindowObjController(this.scene);
         
@@ -146,7 +145,7 @@ var App = function() {
     
     this.update = function() {
         // TODO: user windowControllerObject
-        // Reticulum.update();
+        Reticulum.update();
     };
     
     this.render = function() {
