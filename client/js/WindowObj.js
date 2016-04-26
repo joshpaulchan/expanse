@@ -1,21 +1,36 @@
 
 var WindowObj = function() {
     
-    windowDefaultWidth = 3;
-    windowDefaultHeight = 3;
+    defaultWidth = 3;
+    defaultHeight = 3;
     
     this.init = function() {
-        
         // Create container object
         this.obj = new THREE.Group();
         
-        // Create base plane
-        var geometry = new THREE.PlaneGeometry( windowDefaultHeight, windowDefaultWidth);
-        var material = new THREE.MeshBasicMaterial( { color: "#3498db", wireframe: false} );
-        // var material = new THREE.MeshDepthMaterial();
-        var baseMesh = new THREE.Mesh( geometry, material );
+        // Create base/video plane
+        var geometry = new THREE.PlaneGeometry(defaultWidth, defaultHeight);
+        var material = new THREE.MeshBasicMaterial( { color: "#3498db", wireframe: true} );
+
+        var videoScreen = new THREE.Mesh( geometry, material );
         
-        this.obj.add(baseMesh);
+        // Create minimize button
+        geometry = new THREE.PlaneGeometry(defaultWidth, defaultHeight / 6);
+        material = new THREE.MeshBasicMaterial( { color: "#dab", wireframe: false} );
+        
+        var minButton = new THREE.Mesh( geometry, material );
+        minButton.position.y = defaultHeight * (1/2)
+        
+        // Create scale button
+        geometry = new THREE.PlaneGeometry(defaultWidth, defaultHeight / 6);
+        material = new THREE.MeshBasicMaterial( { color: "#777", wireframe: false} );
+        
+        var scaleButton = new THREE.Mesh( geometry, material );
+        scaleButton.position.y = defaultHeight * (-1/2)
+        
+        this.obj.add(videoScreen);
+        this.obj.add(minButton);
+        this.obj.add(scaleButton);
         this.id = this.obj.id;
     };
     
