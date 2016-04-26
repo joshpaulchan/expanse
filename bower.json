@@ -1,0 +1,29 @@
+{
+  "name": "expanse",
+  "description": "A VR Window Manager",
+  "main": "index.js",
+  "authors": [
+    "Group 13"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "virtual-reality",
+    "virtual",
+    "VR",
+    "three.js"
+  ],
+  "homepage": "https://github.com/joshpaulchan/expanse",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "three.js": "threejs#*"
+  }
+}
