@@ -1,6 +1,5 @@
 
 var WindowObjController = function(scene) {
-    
     var windows;
     var activeWindow = null;
     
@@ -19,24 +18,14 @@ var WindowObjController = function(scene) {
 			fuseVisible: true, //is visible
 			fuseDuration: 0.5, //reticle takes 0.5 seconds to load
 			fuseColor: 0xcc0000, //color
-        	onGazeOver: function() { //Function when reticle intersects the object
-        	
-        	},
         	onGazeOut: function() { //Function when reticle moves off object
-        	
+        	    // TODO: if (activeWindow == this window) then leave
         	},
         	onGazeLong: function() { //Function for when the reticle has been on the window long enough for the fuse to load
                 that.setActiveWindow(wdo);
-        	},
-        	onGazeClick: function() { //Function on Click
-
         	}
     	});
-        
-        // TODO: register wdo with Reticulum
-        // i.e. reticulum.add
-        // on gaze enter: set WindowObjController.activewindow to this window
-        // on gaze leave: if (activewindow == this window) then make it null
+
         return wdo;
     };
     
