@@ -95,7 +95,48 @@ var App = function() {
             var aw = this.windowObjController.getActiveWindow();
             
             if (aw !== null) {
-                gestures[parseInt(gestureNum)](aw);
+                switch (gestureNum) 
+                {
+                			case 0:
+                				MoveLeft(aw.obj);
+                			break;
+                			
+                			case 1:
+                				MoveRight(aw.obj);
+                			break;
+                			
+                			case 2:
+                				MoveUp(aw.obj);
+                			break;
+                			
+                			case 3:
+                				MoveDown(aw.obj);
+                			break;
+                			
+                			case 4:
+                				Scale(aw.obj);
+                			break;
+                			
+                			case 5:
+                				Shrink(aw.obj);
+                			break;
+                			
+                			case 6:
+                				Minimize(aw.obj);
+                			break;
+                			
+                			case 7:
+                				Restore(aw.obj);
+                			break;
+                			
+                			case 8:
+                				MoveCloser(aw.obj);
+                			break;
+                			
+                			case 9:
+                				MoveFurther(aw.obj);
+                			break;
+                }
             }
         });
         
