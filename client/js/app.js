@@ -12,7 +12,7 @@ var App = function() {
         // Initialize camera
         this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 700 );
         this.camera.position.set(0, 0, 5);
-        this.scene.add(this.camera)
+        this.scene.add(this.camera);
         
         // Initialize lighting
         this.light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
@@ -65,7 +65,7 @@ var App = function() {
             var aw = this.windowObjController.getActiveWindow();
             
             if (aw !== null) {
-                gestures[gestureNum](aw);
+                gestures[parseInt(gestureNum)](aw);
             }
         });
         
