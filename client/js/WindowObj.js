@@ -1,8 +1,10 @@
 
 var WindowObj = function() {
     
-    defaultWidth = 3;
-    defaultHeight = 3;
+    var defaultWidth = 3;
+    var defaultHeight = 3;
+    
+    var videoTexture;
     
     this.init = function() {
         // Create container object
@@ -10,28 +12,38 @@ var WindowObj = function() {
         
         // Create base/video plane
         var geometry = new THREE.PlaneGeometry(defaultWidth, defaultHeight);
-        var material = new THREE.MeshBasicMaterial( { color: "#3498db", wireframe: true} );
+        this.videoTexture = new THREE.Texture();
+        var material = new THREE.MeshLambertMaterial({
+            color: "#3498db",
+            wireframe: false,
+            map: this.videoTexture
+        });
 
         var videoScreen = new THREE.Mesh( geometry, material );
+        videoScreen.position.z += 0.005;
         
         // Create minimize button
         geometry = new THREE.PlaneGeometry(defaultWidth, defaultHeight / 6);
         material = new THREE.MeshBasicMaterial( { color: "#dab", wireframe: false} );
         
         var minButton = new THREE.Mesh( geometry, material );
-        minButton.position.y = defaultHeight * (1/2)
+        minButton.position.y = defaultHeight * (1/2);
         
         // Create scale button
         geometry = new THREE.PlaneGeometry(defaultWidth, defaultHeight / 6);
         material = new THREE.MeshBasicMaterial( { color: "#777", wireframe: false} );
         
         var scaleButton = new THREE.Mesh( geometry, material );
-        scaleButton.position.y = defaultHeight * (-1/2)
+        scaleButton.position.y = defaultHeight * (-1/2);
         
         this.obj.add(videoScreen);
         this.obj.add(minButton);
         this.obj.add(scaleButton);
         this.id = this.obj.id;
+    };
+    
+    this.setId = function(newId) {
+        this.id = newId;
     };
     
     this.getId = function() {
@@ -66,8 +78,12 @@ var WindowObj = function() {
         // TODO: figure out this whole thing
     };
     
-    this.update = function() {
-        this.obj.rotation.x = 0.01;
+    this.update = function(imgObj) {
+        this.videoTexture.image = imgObj;
+        var that = this;
+        imgObj.onload = function() {
+        	that.videoTexture.needsUpdate = true;
+        };
     };
     
     this.init();
