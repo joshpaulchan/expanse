@@ -2,6 +2,7 @@
 var WindowObjController = function(scene) {
     
     var windows;
+    var activeWindow = null;
     
     this.init = function(scene) {
         this.windows = [];
@@ -15,6 +16,11 @@ var WindowObjController = function(scene) {
         var wdo = new WindowObj();
         this.windows.push(wdo);             // Track window
         // scene.add(wdo.obj);                 // Add window to scene
+        
+        // TODO: register wdo with Reticulum
+        // i.e. reticulum.add
+        // on gaze enter: set WindowObjController.activewindow to this window
+        // on gaze leave: if (activewindow == this window) then make it null
         return wdo;
     };
     
@@ -25,6 +31,10 @@ var WindowObjController = function(scene) {
             }
             return (wo.id != windowId);
         });
+    };
+    
+    this.getActiveWindow = function() {
+        return this.activeWindow;
     };
     
     this.init(scene);
