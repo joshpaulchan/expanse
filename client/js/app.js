@@ -26,6 +26,36 @@ var App = function() {
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( rem );
         
+        
+        Reticulum.init(this.camera, {
+			proximity: false,
+			clickevents: false,
+			reticle: {
+				visible: true,
+				restPoint: 1000, //location when nothing selected
+				color: 0xcc00cc,
+				innerRadius: 0.0001,
+				outerRadius: 0.003,
+					hover: {
+						color: 0x00cccc,
+						innerRadius: 0.02,
+						outerRadius: 0.024,
+						speed: 5,
+						vibrate: 50 
+							}	
+					},
+			fuse: {
+				visible: false,
+				duration: 1.0,
+				color: 0x00fff6,
+				innerRadius: 0.045,
+				outerRadius: 0.06,
+				vibrate: 0, //
+				clickCancelFuse: false //If users clicks on targeted object fuse is canceled
+			}
+		});
+
+        
         // Initialize WindowObjController
         this.windowObjController = new WindowObjController(this.scene);
         this.windowObj = this.windowObjController.createWindow('');
