@@ -4,9 +4,10 @@ var WindowObj = function() {
     var defaultWidth = 3;
     var defaultHeight = 3;
     
+    var id;
     var videoTexture;
     
-    this.init = function() {
+    this.init = function(id) {
         // Create container object
         this.obj = new THREE.Group();
         
@@ -39,11 +40,7 @@ var WindowObj = function() {
         this.obj.add(videoScreen);
         this.obj.add(minButton);
         this.obj.add(scaleButton);
-        this.id = this.obj.id;
-    };
-    
-    this.setId = function(newId) {
-        this.id = newId;
+        this.id = id;
     };
     
     this.getId = function() {
