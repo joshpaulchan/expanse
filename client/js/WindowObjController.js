@@ -8,14 +8,9 @@ var WindowObjController = function(scene) {
         this.windows = {};
     };
     
-    this.createWindows = function(n, feeds) {
-        // TODO:
-    };
-    
-    this.createWindow = function(srcUrl) {
-        var wdo = new WindowObj();
-        this.windows[wdo.getId] = wdo;             // Track window
-        // scene.add(wdo.obj);                 // Add window to scene
+    this.createWindow = function(id) {
+        var wdo = new WindowObj(id);
+        this.windows[id] = wdo;             // Track window
         
         // TODO: register wdo with Reticulum
         // i.e. reticulum.add
@@ -25,12 +20,7 @@ var WindowObjController = function(scene) {
     };
     
     this.destroyWindow = function(windowId) {
-        this.windows.filter(function(wo) {
-            if (wo.id == windowId) {
-                wo.close();
-            }
-            return (wo.id != windowId);
-        });
+        this.windows[windowId].close();
     };
     
     this.getWindowById = function(id) {
