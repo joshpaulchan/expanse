@@ -1,3 +1,6 @@
+// written by: Dmitriy Koz (Virtualization Team)
+// tested by: Dmitriy Koz (Virtualization Team)
+// debugged by: Joshua Chan, Dmitriy Koz (Virtualization Team)
 
 //Setup the virtual world
 var renderer = new THREE.WebGLRenderer( { antialias: true } );

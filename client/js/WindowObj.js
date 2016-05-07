@@ -1,3 +1,6 @@
+// written by: Joshua Chan, Anthony Wong, Dmitriy Koz (Virtualization Team)
+// tested by: Joshua Chan, Anthony Wong, Dmitriy Koz (Virtualization Team)
+// debugged by: Joshua Chan, Anthony Wong, Dmitriy Koz (Virtualization Team)
 
 var WindowObj = function() {
     
